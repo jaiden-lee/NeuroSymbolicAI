@@ -1,3 +1,5 @@
+# Article this code is from: https://medium.com/@thakermadhav/build-your-own-rag-with-mistral-7b-and-langchain-97d0c92fa146
+
 # IMPORTS
 from llama_cpp import Llama
 from langchain.text_splitter import CharacterTextSplitter
