@@ -23,3 +23,10 @@ The **quantization.ipnyb** file is for testing with a GGUF quantized version of 
 **RAG.ipnyb** currently doesn't function properly since langchain async requests cannot be made in jupyter notebooks for some reason, and I can't figure out how to get around that
 
 **RAG.py** is where I followed a tutorial on using langchain to build RAG model. It is very slow as well, even though I'm also using a quantized model.
+### rag-pipeline
+The main file in this directory is rag_pipeline.py
+
+By importing this file into another file, you can instantiate a RAG object. Example code is provided in the rag_example.ipnyb file. 
+
+More documentation is provided in the README file inside the rag-pipeline directory.
+
