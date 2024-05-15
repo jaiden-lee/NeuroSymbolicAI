@@ -1,0 +1,65 @@
+{
+    "data":[
+        {
+            "id":6401197308716204890,
+            "prompt":"which method of forecasting uses averages to predict future weather?",
+            "canAnswer":true,
+            "context":[ "Seasonality is a characteristic of a time series in which the data experiences regular and predictable changes which recur every calendar year .", "Any predictable change or pattern in a time series that recurs or repeats over a one - year period can be said to be seasonal .", "In such situations , the forecasting procedure calculates the seasonal index of the `` season '' -- seven seasons , one for each day -- which is the ratio of the average demand of that season ( which is calculated by Moving Average or Exponential Smoothing using historical data corresponding only to that season ) to the average demand across all seasons ." ]
+        },
+        {
+            "id":-1218875241352839456,
+            "prompt":"difference between russian blue and british blue cat?",
+            "canAnswer":true,
+            "context":[ "The coat is known as a `` double coat '' , with the undercoat being soft , downy and equal in length to the guard hairs , which are an even blue with silver tips .", "However , the tail may have a few very dull , almost unnoticeable stripes .", "Russian Blues should not be confused with British Blues ( which are not a distinct breed , but rather a British Shorthair with a blue coat as the British Shorthair breed itself comes in a wide variety of colors and patterns ) , nor the Chartreux or Korat which are two other naturally occurring breeds of blue cats , although they have similar traits ." ]
+        },
+        {
+            "id":7812627963583184440,
+            "prompt":"what is the role of the prime minister in canada?",
+            "canAnswer":true,
+            "context":[ "The prime minister is , instead , the head of government and is responsible for advising the Crown on how to exercise the Royal Prerogative and its executive powers , which are governed by the constitution and its conventions .", "Today , as per the doctrines of constitutional monarchy , the advice given by the prime minister is ordinarily binding , meaning the prime minister effectively carries out those duties ascribed to the sovereign or governor general , leaving the latter to act in predominantly ceremonial fashions .", "As such , the prime minister , supported by the Office of the Prime Minister ( PMO ) , controls the appointments of many key figures in Canada 's system of governance , including the governor general , the Cabinet , justices of the Supreme Court , senators , heads of crown corporations , ambassadors to foreign countries , the provincial lieutenant governors , and approximately 3,100 other positions .", "Further , the prime minister plays a prominent role in the legislative process -- with the majority of bills put before parliament originating in the Cabinet -- and the leadership of the Canadian Armed Forces ." ]
+        },
+        {
+            "id":1249598914156603825,
+            "prompt":"the latin phrase parens patriae was used to refer to?",
+            "canAnswer":true,
+            "context":[ "Parens patriae is Latin for `` parent of the nation '' ( lit.", "In law , it refers to the public policy power of the state to intervene against an abusive or negligent parent , legal guardian , or informal caretaker , and to act as the parent of any child or individual who is in need of protection ." ]
+        },
+        {
+            "id":7663406429430503589,
+            "prompt":"who were the dadaists and what did they do?",
+            "canAnswer":true,
+            "context": ["Developed in reaction to World War I , the Dada movement consisted of artists who rejected the logic , reason , and aestheticism of modern capitalist society , instead expressing nonsense , irrationality , and anti-bourgeois protest in their works .", "Dadaist artists expressed their discontent with violence , war , and nationalism , and maintained political affinities with the radical left ." ]
+        },
+        
+        {
+            "id":6401197308716204890,
+            "prompt":"how many sisters did cinderella have?",
+            "canAnswer":true,
+            "context":[ "Seasonality is a characteristic of a time series in which the data experiences regular and predictable changes which recur every calendar year .", "Any predictable change or pattern in a time series that recurs or repeats over a one - year period can be said to be seasonal .", "In such situations , the forecasting procedure calculates the seasonal index of the `` season '' -- seven seasons , one for each day -- which is the ratio of the average demand of that season ( which is calculated by Moving Average or Exponential Smoothing using historical data corresponding only to that season ) to the average demand across all seasons ." ]
+        },
+        {
+            "id":-1218875241352839456,
+            "prompt":"where did the saying hakuna matata come from?",
+            "canAnswer":true,
+            "context":[ "The coat is known as a `` double coat '' , with the undercoat being soft , downy and equal in length to the guard hairs , which are an even blue with silver tips .", "However , the tail may have a few very dull , almost unnoticeable stripes .", "Russian Blues should not be confused with British Blues ( which are not a distinct breed , but rather a British Shorthair with a blue coat as the British Shorthair breed itself comes in a wide variety of colors and patterns ) , nor the Chartreux or Korat which are two other naturally occurring breeds of blue cats , although they have similar traits ." ]
+        },
+        {
+            "id":7812627963583184440,
+            "prompt":"what does the president of the US do?",
+            "canAnswer":true,
+            "context":[ "The prime minister is , instead , the head of government and is responsible for advising the Crown on how to exercise the Royal Prerogative and its executive powers , which are governed by the constitution and its conventions .", "Today , as per the doctrines of constitutional monarchy , the advice given by the prime minister is ordinarily binding , meaning the prime minister effectively carries out those duties ascribed to the sovereign or governor general , leaving the latter to act in predominantly ceremonial fashions .", "As such , the prime minister , supported by the Office of the Prime Minister ( PMO ) , controls the appointments of many key figures in Canada 's system of governance , including the governor general , the Cabinet , justices of the Supreme Court , senators , heads of crown corporations , ambassadors to foreign countries , the provincial lieutenant governors , and approximately 3,100 other positions .", "Further , the prime minister plays a prominent role in the legislative process -- with the majority of bills put before parliament originating in the Cabinet -- and the leadership of the Canadian Armed Forces ." ]
+        },
+        {
+            "id":1249598914156603825,
+            "prompt":"where does the phrase 'tabula rasa' come from?",
+            "canAnswer":true,
+            "context":[ "Parens patriae is Latin for `` parent of the nation '' ( lit.", "In law , it refers to the public policy power of the state to intervene against an abusive or negligent parent , legal guardian , or informal caretaker , and to act as the parent of any child or individual who is in need of protection ." ]
+        },
+        {
+            "id":7663406429430503589,
+            "prompt":"why did Japan attack Pearl harbor in WW2?",
+            "canAnswer":true,
+            "context": ["Developed in reaction to World War I , the Dada movement consisted of artists who rejected the logic , reason , and aestheticism of modern capitalist society , instead expressing nonsense , irrationality , and anti-bourgeois protest in their works .", "Dadaist artists expressed their discontent with violence , war , and nationalism , and maintained political affinities with the radical left ." ]
+        },
+    ]
+}
