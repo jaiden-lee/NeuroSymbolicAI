@@ -30,3 +30,9 @@ By importing this file into another file, you can instantiate a RAG object. Exam
 
 More documentation is provided in the README file inside the rag-pipeline directory.
 
+### arxiv-rag
+This code contains a class that is able to take in a research paper from arxiv in HTML format, and perform RAG on it.
+
+One caveat, you must use a different collection name for each different arxiv article; (I will try to fix this in the future, but it appears that new ChromaDB objects don't create new databases, rather it just points to the same cached database).
+
+Other than that, it's really easy to use. Simply just instantiate the ArxivRAG object and initialize with the URL to the arxiv html page, as well as the collection name. Then, just call the .query() method to ask the model questions.
