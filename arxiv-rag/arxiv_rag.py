@@ -33,3 +33,9 @@ class ArxivRAG:
     
     def query(self, prompt, num_docs=5, tokens=512):
         return self.rag.rag_query(self.collection, prompt, num_docs,tokens)
+    
+    def normal_query(self, prompt, tokens=512, temp=.8):
+        return self.rag.query(prompt, tokens, temp)
+    
+    def retrieve_docs(self, prompt, num_docs=5):
+        return self.rag.retrieve(self.collection, prompt, num_docs)

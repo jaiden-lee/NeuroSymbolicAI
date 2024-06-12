@@ -23,12 +23,14 @@ class RAG:
         if db is None:
             db = DocumentDB()
         self.db = db
-        model_name = "TheBloke/Mistral-7B-Instruct-v0.2-GGUF"
-        model_file = "mistral-7b-instruct-v0.2.Q2_K.gguf"
+        # model_name = "TheBloke/Mistral-7B-Instruct-v0.2-GGUF"
+        # model_file = "mistral-7b-instruct-v0.2.Q2_K.gguf"
+        model_name = "microsoft/Phi-3-mini-4k-instruct-gguf"
+        model_file = "Phi-3-mini-4k-instruct-q4.gguf"
         model_path = hf_hub_download(model_name, filename=model_file)
         self.model = Llama(
             model_path = model_path,
-            n_ctx=4096
+            n_ctx=32000
         )
 
     def add_collection(self, name):
@@ -37,12 +39,13 @@ class RAG:
     def add_documents(self, collection, docs):
         self.db.add_documents(collection, docs)
     
-    def query(self, prompt, tokens):
+    def query(self, prompt, tokens, temp=.8):
         output = self.model(
             prompt = prompt,
             max_tokens = tokens,
-            stop = ["Q:"],
-            echo=False
+            stop = ["PAUSE"],
+            echo=False,
+            temperature=temp
         )
         output_text = output['choices'][0]['text']
         return output_text
