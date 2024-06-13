@@ -1,0 +1,44 @@
+{
+    "data": [
+        {
+            "question": "Sarah has 5 books in her collection. If she receives 3 more as gifts, how many books does she have in total?",
+            "answer": "Sarah has 8 books."
+        },
+        {
+            "question": "Alex has $50 in his wallet. He spends $20 on groceries. How much money does he have left?",
+            "answer": "Alex has $30 left."
+        },
+        {
+            "question": "Emily baked 2 dozen cookies for a party. If each dozen contains 12 cookies, how many cookies did Emily bake in total?",
+            "answer": "Emily bakes 24 cookies."
+        },
+        {
+            "question": "David goes for a run and covers 4 miles. Later, he goes for another run and covers 3 more miles than his first run. How many miles did he cover in total?",
+            "answer": "David covers 11 miles."
+        },
+        {
+            "question": "How does Chatbot Arena contribute to the evaluation process?",
+            "answer": "Chatbot Arena, a crowdsourced platform, facilitates real-world scenario battles between chatbots, enabling comparative assessments and enhancing evaluation robustness."
+        },
+        {
+            "question": "What strategies are proposed to enhance LLM-as-a-judge's grading ability for math and reasoning questions?",
+            "answer": "The paper suggests approaches like swapping positions, few-shot judges, chain-of-thought and reference-guided judges, and fine-tuning judge models to address these limitations."
+        },
+        {
+            "question": "What is MTBench?",
+            "answer": "MT-Bench is a challenging multi-turn benchmark designed to evaluate the ability of large language models (LLMs) to engage in coherent, informative, and engaging conversations. It consists of a series of open-ended questions that assess chatbots' multi-turn conversational and instruction-following abilities, which are critical elements for understanding human preferences."
+        },
+        {
+            "question": "How does MTBench differ from Chatbot Arena?",
+            "answer": "MT-Bench focuses on evaluating chatbots’ multi-turn conversational and instruction-following abilities using open-ended questions. It employs human ratings through pairwise comparison to assess chatbot responses. In contrast, Chatbot Arena features anonymous, randomized battles among large language models (LLMs) and ranks them based on Elo ratings determined by crowdsourced votes. While MT-Bench emphasizes response quality and differentiation, Chatbot Arena provides comparative performance insights through real-world scenario battles."
+        },
+        {
+            "question": "What is (4*3)/12",
+            "answer": "1"
+        },
+        {
+            "question": "What is 4 minus 3 plus 8",
+            "answer": "9"
+        }
+    ]
+}

@@ -33,7 +33,6 @@ Thought: I am being provided a word problem. I should turn this word problem int
 Action: convertToWordProblem: Bob has 5 bananas. He eats 2 of them. How many does he have left?
 PAUSE
 
-You will be called again with something like this:
 Observation: 5-2
 
 Action: calculator: 5-2
@@ -42,6 +41,7 @@ PAUSE
 Observation: 3
 
 Answer: Bob has 3 apples left.
+PAUSE
 
 Example session 2:
 Question: What is the difference between MTBench and Chatbot Arena?
@@ -58,7 +58,8 @@ PAUSE
 Observation: <A set of 5 sentences describing what Chatbot Arena is.>
 
 Answer: <A comparison between MTBench and Chatbot Arena given your newfound knowledge based on the documents provided to you>
-        """
+PAUSE
+"""
         self.evaluation_prompt = """
 You will be shown a question and an answer. Give both an Evaluation and a Score. On a scale of 1-10, Score the answer based on its accuracy and how well it answers it the question. Then return PAUSE. Here are 3 examples to help:
 
@@ -102,6 +103,7 @@ Evaluation: The previous answer is incorrect. Although 5 minus 6 is negative, th
 Score: 1
 
 Plan: I see my mistake. I misread the problem and assumed that the problem did not allow for negative numbers. However, my process for achieving a result of -1 was correct. Next time, I will keep the same process to get to an answer of -1, but I will focus on making sure my answer is specifically tailored to the question being asked.
+PAUSE
 """
         self.actions = {}
         self.actions["convertToWordProblem"] = self.convertToWordProblem
@@ -161,27 +163,26 @@ Problem: {problem}
 Question: {question}
 
 [ASSISTANT]
-        """
+"""
         output = ""
         for i in range(10):
+            print("_"*20+ "\n" + prompt)
             output = self.agent.normal_query(prompt, tokens=512, temp=1)
-            print(output)
+            # print(output)
 
             actionRegex = "Action: (\\w+): (.*)"
             foundAction = re.search(actionRegex, output)
-            if foundAction is not None:
-                print(foundAction.group(1))
-                print(foundAction.group(2))
+            if "Answer:" not in output and foundAction is not None:
                 action = foundAction.group(1)
                 params = foundAction.group(2)
                 if action in self.actions:
                     func = self.actions[action]
                     res = func(params)
-                    print(res)
+                    # print(res)
                     prompt += f"\n{output}\nObservation: {res}"
             else:
                 if "Answer:" in output:
-                    print("FOUND ANSWER")
+                    print("FOUND ANSWER \n"+"_"*20 +"\n"+output)
                     # evaluate answer now
                     new_prompt = f"""
 [SYSTEM]
@@ -194,7 +195,7 @@ Answer: {output}
 [ASSISTANT]
 """
                     evaluation = self.agent.normal_query(new_prompt, tokens=512, temp=0)
-                    print(evaluation)
+                    print("_"*20 + "\n" + evaluation)
                     scoreRegex = "Score: (\\d+)"
                     scoreFound = re.search(scoreRegex, evaluation)
                     if scoreFound is not None:
@@ -228,4 +229,9 @@ Question: {question}
 
 [ASSISTANT]
 """
-        return output
+        return "MODEL FAILED TO PRODUCE OUTPUT"
+    
+    # bug, even when the model answers, it will generate another question to answer and begin answering that; i noticed that it answers the questions pretty well, but then it hallucinates a new question; I think I need to add a PAUSE statement
+    # optimization, model doesn't like to listen to my structure and will keep going even I told it to stop; so, I think the second I see answer, I break out; I should change it to check for answer first, and then for action; I'm not really sure how to get it to stop answering automatically, cuz like even with RAG, it'll just put the document there, which it made up (I'm guessing one of papers it was fine tuned on was MTBench, so it prob knows a good amt about it, but I still want it to pause and take an action instead of just doing whatever it does)
+    # I also notice the evaluation isn't that good; false negatives; like the answer is right, but the evaluation keeps saying the model is wrong in its answer
+    # on top of the model doing things on its own, it will try to review itself, even when I haven't prompted it to be reviewed yet, and this wasn't in the directions
