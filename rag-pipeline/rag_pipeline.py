@@ -25,8 +25,10 @@ class RAG:
         self.db = db
         # model_name = "TheBloke/Mistral-7B-Instruct-v0.2-GGUF"
         # model_file = "mistral-7b-instruct-v0.2.Q2_K.gguf"
-        model_name = "microsoft/Phi-3-mini-4k-instruct-gguf"
-        model_file = "Phi-3-mini-4k-instruct-q4.gguf"
+        # model_name = "microsoft/Phi-3-mini-4k-instruct-gguf"
+        # model_file = "Phi-3-mini-4k-instruct-q4.gguf"
+        model_name = "bartowski/Mistral-7B-Instruct-v0.3-GGUF"
+        model_file = "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf"
         model_path = hf_hub_download(model_name, filename=model_file)
         self.model = Llama(
             model_path = model_path,
