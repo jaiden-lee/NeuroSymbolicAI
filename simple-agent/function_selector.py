@@ -85,10 +85,9 @@ Description: {tool_desc}
 """
         res = self.model(prompt, stop=["PAUSE"], echo=False, max_tokens = 512)
         output = res["choices"][0]["text"]
-        print(output)
         tool_calls = []
+        print(output)
         for line in output.split("\n"):
-            print(line)
             if "TOOL" in line:
                 tool = self.tools_collection.query(query_texts=line, n_results=1)
                 tool_calls.append(tool)
