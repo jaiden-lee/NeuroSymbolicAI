@@ -6,6 +6,8 @@
 Type: "python3 -m venv .venv" in the command line in the root directory to create a virtual environment called ".venv"
 ### Step 3. After setting up the virtual environment, run/launch the virtual environment
 Navigate to the Scripts and run the virtual environment. It depends on which terminal and operating system you are using, but it will be a file called **activate** plus some file extension (i.e., .bat for windows CMD, or .ps1 for windows powershell)
+
+If you're on Mac or Linux, type `source activate`
 ### Step 4. Once the venv is launched, navigate to the root directory and install dependencies.
 **Windows**: Run `pip3 install -r requirements.txt` from the root of the project
 
