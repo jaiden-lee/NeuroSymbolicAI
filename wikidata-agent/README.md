@@ -17,3 +17,6 @@ Here is a written explanation of how a fact checking cycle might go:
 9. After verifying the relationship is correct, we will perform a SPARQL query to find the true value for `entity_2`, which will be fed to the LLM (step 3), and the LLM will determine whether to keep performing more SPARQL queries or not. In this case, we get `Akron` as the birthplace, so the LLM will keep going.
 10. The LLM knows that Akron is not a country, so the LLM will generate another semantic triple: `{"entity_1": "Akron", "relationship": "country", "entity_2": "United States"}`
 11. The process will repeat, and the LLM will then find out that Akron is apart of the US, so the LLM will then tell the user, `True. Lebron James was born in Akron, which is in the United States`
+
+
+To get started, just import the `FactCheckerAgent` class from `fact_checker_agent.py`, and create a new instance of `FactCheckerAgent` class. Then, just call the `query(query, verbose)` method. By default verbose is False, you don't need to supply it. It is helpful for debugging though. The query parameter is used for the actual fact to fact check.
