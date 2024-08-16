@@ -86,7 +86,43 @@ RESPONSE: {"message": "False. Lebron James has 3 children: Bryce, Bronny, and Zh
 PAUSE
 ###END EXAMPLE 3
 """.strip()
-        
+        self.relationship_verification_prompt = """
+You are an AI assistant with 1 job: verify if 2 relationships are semantically the same.
+
+You will be provided with a semantic triple (which contains an entity_1, relationship, and entity_2), as well as a Task, and a predicted relationship.
+
+Your goal is to output True/False depending on if the predicted relationship would is semantically the same as the relationship in the semantic triple.
+
+###EXAMPLE 1:
+Task: I will look up where Lebron James was born.
+Semantic triple: {"entity_1": "Lebron James", "relationship": "birthplace", "entity_2": "United States"}
+Relationship: place of birth
+
+THOUGHT: birthplace is the same as place of birth
+RESPONSE: True
+PAUSE
+###END EXAMPLE 1
+
+###EXAMPLE 2:
+Task: Since Akron is a city, I should find what country Akron is located in.
+Semantic triple: {"entity_1": "Akron", "relationship": "country", "entity_2": "United States"}
+Relationship: Parent nation
+
+THOUGHT: parent nation is most likely semantically the same as country
+RESPONSE: True
+PAUSE
+###END EXAMPLE 2
+
+###EXAMPLE 3
+Task: I will look up to see if the etruscan shrew is the smallest mammal on the planet.
+Semantic triple: {"entity_1": "earth", "relationship": "smallest", entity_2: "Etruscan Shrew"}
+Relationship: size
+
+THOUGHT: size is most likely not referring to the smallest mammal
+RESPONSE: False
+PAUSE
+###END EXAMPLE 3
+"""
         # Create DB to use for RAG to select relationship
         self.relationship_db = chromadb.Client()
 
@@ -152,6 +188,7 @@ THOUGHT:
 
                     entity_1 = response_json["entity_1"]
                     relationship = response_json["relationship"]
+                    thought = output.split("\n")[0]
 
                     # look for the id of entity from wikidata via API search
                     parameters = {
@@ -230,6 +267,32 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
                     relationship_doc = collection.query(query_texts=relationship, n_results=1)
                     relationship_id = relationship_doc["ids"][0][0]
 
+                    verify_prompt = f"""
+[SYSTEM]
+{self.relationship_verification_prompt}
+
+[USER]
+Task: {thought}
+Semantic Triple: {response_json}
+Relationship: {relationship_doc['documents'][0][0]}
+
+THOUGHT:
+"""
+                    verify_output = self.model(
+                        prompt=verify_prompt,
+                        stop=["PAUSE"],
+                        max_tokens=512
+                    )["choices"][0]["text"]
+
+                    if verbose:
+                        print("Verification output")
+                        print(verify_output)
+                    if ("False" in verify_output):
+                        prompt+="RESULT: Relationship not found, please try a different relationship.\n\nTHOUGHT:"
+                        if verbose:
+                            print("Relationship did not match")
+                        continue
+
                     # NOTE: need to handle case where the relationship selected is different from the relationship we predicted (aka, that relationship could not be found in the entity)
 
                     if verbose:
@@ -238,8 +301,9 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
 
                     # Fetch the real value for entity_3
                     self.sparql.setQuery("""
-SELECT ?value WHERE {
-  wd:"""+entity_id+""" wdt:"""+relationship_id+""" ?value .
+SELECT ?value ?valueLabel WHERE {
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+    wd:"""+entity_id+""" wdt:"""+relationship_id+""" ?value .
 }
 """)
                     entity_2_results = self.sparql.query().convert()
@@ -248,7 +312,7 @@ SELECT ?value WHERE {
                     entity_2_values_formatted = []
 
                     for value in entity_2_values:
-                        entity_2_values_formatted.append(value["value"]["value"])
+                        entity_2_values_formatted.append(value["valueLabel"]["value"])
 
                     if verbose:
                         print("Here are all the values associated with the selected relationship")
